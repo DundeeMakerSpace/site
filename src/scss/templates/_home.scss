@@ -1,0 +1,45 @@
+body.home .main-header-nav-wrap--image {
+	// min-height: 100vh;
+}
+
+.home-cta-button {
+	display: block;
+	margin: 0 auto;
+	background-color: $link-c;
+	border-color: $link-c;
+	border-width: .2em;
+	color: $bgc;
+	transition: all $transition-fast;
+	@include tp-fs(2);
+	@include breakpoint($mid-break) {
+		@include tp-fs(3);
+		max-width: 60%;
+	}
+	@include breakpoint($large-break) {
+		@include tp-fs(4);
+		max-width: 60%;
+	}
+
+	@include scut-selected(true) {
+		background-color: $text-c;
+		border: .2em solid $text-c;
+		transform: translateY(-4px) scale(1.01);
+	}
+}
+
+.home-event {
+	text-decoration: none;
+	// color: $text-c;
+}
+
+.home-event__title {
+	font-weight: bold;
+	margin: 0;
+	@include tp-trailer(.5);
+	@include tp-fs(0);
+}
+
+.home-event__date {
+	color: $text-c;
+	@include tp-fs(-1);
+}

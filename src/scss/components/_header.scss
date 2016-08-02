@@ -1,0 +1,51 @@
+.main-header-nav-wrap {
+    background-color: $header-bgc;
+    background-position: center;
+    background-size: cover;
+    @include tp-padding-leader();
+}
+
+.main-header-nav-wrap--image::after {
+    content: '';
+    display: block;
+    height: 3rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.5));
+    pointer-events: none;
+}
+
+.main-header-nav-wrap__title {
+    color: $header-c;
+    @include tp-leader();
+    .main-header-nav-wrap--image & {
+        text-shadow: 0 0 .5em rgba(0,0,0,.8);
+    }
+}
+
+.main-header {
+    // background-color: $header-bgc;
+    color: $header-c;
+    // @include tp-padding-leader();
+    // @include tp-padding-trailer();
+}
+
+.main-title {
+    margin: 0;
+}
+
+.headroom {
+    transition: transform 200ms linear;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+}
+.headroom--pinned {
+    transform: translateY(0%);
+}
+.headroom--unpinned {
+    transform: translateY(-100%);
+}

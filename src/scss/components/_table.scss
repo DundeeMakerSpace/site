@@ -1,0 +1,28 @@
+table {
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	background-color: $bgc;
+	@include tp-trailer();
+}
+
+th,
+td {
+	padding: 0.5em;
+}
+
+thead {
+	background-color: $text-c;
+	color: $bgc;
+
+	th {
+		color: inherit;
+	}
+}
+
+tbody tr {
+	background-color: map-get($colors, white);
+	&:nth-child(2n) {
+		background-color: darken(map-get($colors, white), 2%);
+	}
+}

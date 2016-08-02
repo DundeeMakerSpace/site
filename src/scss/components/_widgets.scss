@@ -1,0 +1,45 @@
+.widget_archive,
+.widget_categories,
+.widget_pages,
+.widget_meta,
+.widget_recent_comments,
+.widget_recent_entries,
+.widget_rss,
+.widget_nav_menu {
+	ul {
+		@extend %scut-list-unstyled;
+        margin-left: 0;
+
+		ul {
+            @include tp-space(padding-left, 1);
+		}
+	}
+}
+
+.widgets {
+
+}
+
+.widgettitle {
+	@extend .h3;
+}
+
+.widget_search {
+    .search-form {
+        @extend %scut-clearfix;
+
+        & > label {
+            display: block;
+            @include span(6 of 10);
+        }
+
+        .search-field {
+            width: 100%;
+        }
+
+        .search-submit {
+            display: block;
+            @include span(last 4 of 10);
+        }
+    }
+}

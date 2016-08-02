@@ -1,0 +1,18 @@
+.tribe-events-tooltip {
+	overflow: hidden;
+	background-color: $text-c;
+	color: $bgc;
+	border: none;
+	@include tp-space(padding, .5);
+}
+
+.tribe-events-tooltip .tribe-events-event-body {
+	display: block;
+	font-size: 0.7rem !important;
+	padding: 0;
+	white-space: normal;
+}
+
+.tribe-events-tooltip .tribe-events-arrow {
+	display: none !important;
+}

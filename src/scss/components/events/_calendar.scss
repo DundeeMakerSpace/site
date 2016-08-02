@@ -1,0 +1,15 @@
+#tribe-events-content table.tribe-events-calendar {
+	width: 100%;
+	max-width: 110em;
+	margin-left: auto;
+	margin: auto;
+	table-layout: auto;
+}
+
+.tribe-events-month-event-title {
+	@include tp-fs(-1);
+	@include tp-trailer(.25);
+	@include breakpoint($large-break) {
+		@include tp-fs(0);
+	}
+}

@@ -1,0 +1,36 @@
+.tribe-events-sub-nav,
+#tribe-events-content ul.tribe-events-sub-nav {
+	@include tp-container();
+	@include tp-leader();
+	@include tp-trailer();
+	@include scut-clearfix();
+}
+
+.tribe-events-nav-left,
+.tribe-events-nav-previous {
+	float: left;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+}
+
+.tribe-events-nav-right,
+.tribe-events-nav-next {
+	float: right;
+	text-align: right;
+	margin: 0;
+	padding: 0;
+}
+
+.tribe-events-sub-nav a {
+	@include tp-button();
+	@include tp-fs(-2);
+	background-color: $text-c;
+	border-color: $text-c
+}
+
+.tribe-events-single .tribe-events-sub-nav,
+#tribe-events-content.tribe-events-single  ul.tribe-events-sub-nav {
+	padding-left: 0;
+	padding-right: 0;
+}

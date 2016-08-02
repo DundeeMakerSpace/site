@@ -1,0 +1,71 @@
+.block {
+	display: block;
+	@include tp-padding-leader(2);
+	@include tp-padding-trailer(2);
+
+	&.block--last,
+	.page-builder &:last-child {
+		@include tp-trailer(-2);
+	}
+}
+
+.block--highlight {
+	background-color: map-get($colors, offwhite);
+}
+
+.block--banner {
+	background-color: $highlight-bgc;
+	color: $highlight-c;
+}
+
+.block--banner {
+	button,
+	.button {
+		@include tp-button();
+		color: $bgc;
+		background-color: $text-c;
+		border-color: $text-c;
+	}
+}
+
+.block__double-column {
+	display: block;
+	@include tp-trailer(2);
+	&.even {
+		margin: 0;
+	}
+	@include breakpoint($mid-break) {
+		margin: 0;
+		@include span($mid-cols / 2 of $mid-cols);
+		&.even {
+			@include omega();
+		}
+		&.even + & {
+			clear: both;
+		}
+	}
+	@include breakpoint($large-break) {
+		@include span($large-cols / 2 of $large-cols);
+		&.even {
+			@include omega();
+		}
+	}
+}
+
+.block__triple-column {
+	display: block;
+	@include tp-trailer(2);
+	&.third {
+		margin: 0;
+	}
+	@include breakpoint($large-break) {
+		margin: 0;
+		@include span($large-cols / 3 of $large-cols);
+		&.third {
+			@include omega();
+		}
+		&.third + & {
+			clear: both;
+		}
+	}
+}

@@ -1,0 +1,13 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="block block--last">
+    	<div class="block__inner layout-wrapper">
+	        {% if logged_in %}
+	            {{post.content}}
+	        {% else %}
+	            {{fn('wp_login_form')}}
+	        {% endif %}
+    	</div>
+    </div>
+{% endblock %}

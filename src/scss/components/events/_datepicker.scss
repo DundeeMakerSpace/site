@@ -1,0 +1,32 @@
+.datepicker {
+	width: 20em;
+	max-width: 96%;
+	padding: 0;
+	border-radius: 0;
+}
+
+.datepicker.dropdown-menu {
+	border: none;
+	box-shadow: .4em .4em .3em rgba(0,0,0,.1);
+}
+
+// Fix positioning
+.datepicker.dropdown-menu.datepicker-orient-top {
+	@include tp-space(margin-top, -1.6);
+}
+
+// Arrow
+.datepicker-dropdown:before,
+.datepicker-dropdown:after, {
+	border-bottom-color: $text-c;
+}
+
+.datepicker td,
+.datepicker th {
+	border-radius: 0;
+}
+
+.datepicker tfoot tr th:hover,
+.datepicker thead tr:first-child th:hover {
+	background: none;
+}

@@ -1,0 +1,21 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    {% if term_description %}
+        <div class="block block--highlight">
+            <div class="layout-wrapper">
+                {{term_description}}
+            </div>
+        </div>
+    {% endif %}
+    <div class="resource-previews layout-wrapper">
+        {% for resource in resources %}
+            <a class="resource-preview" href="{{resource.link}}">
+                <h3 class="resource-preview__title">{{resource.name}}</h3>
+                {% if resource.excerpt %}
+                    <p class="resource-preview__excerpt">{{resource.excerpt}}</p>
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

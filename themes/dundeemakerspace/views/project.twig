@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+    <article class="{{post.post_class}} article content-section">
+        <div class="article__content block layout-wrapper">
+            {{post.content}}
+        </div>
+
+        {% if contributors %}
+            <footer class="single-project__contributors block block--highlight block--last">
+                <div class="block__inner layout-wrapper">
+                    <h3 class="contibutors-list__title">Makers</h3>
+                    <ul class="contributors-list">
+                        {% for contributor in contributors %}
+                            <li class="contributor-list__contibutor"><a href="{{fn('get_author_posts_url', contributor.data.ID)}}">{{contributor.data.display_name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </footer>
+        {% endif %}
+
+    </article>
+{% endblock %}

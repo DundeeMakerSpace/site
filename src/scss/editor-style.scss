@@ -1,0 +1,12 @@
+@import url("https://brick.a.ssl.fastly.net/Anonymous+Pro:400,400i/Ubuntu:700");
+@import "style";
+
+html, body {
+	margin: 0;
+	min-height: 100%;
+    background-color: $bgc;
+}
+
+#tinymce {
+    padding: 1em !important;
+}

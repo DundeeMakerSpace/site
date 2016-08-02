@@ -1,0 +1,74 @@
+.tribe-events-list-separator-month {
+	display: block;
+	font-weight: bold;
+	text-align: center;
+	@include tp-fs(2);
+	@include tp-container();
+}
+.tribe-events-list-separator-month span {
+	display: block;
+	@include tp-leader(2);
+	@include tp-trailer(2);
+}
+
+.tribe-events-list .type-tribe_events {
+	background-color: map-get($colors, offwhite);
+	position: relative;
+	@include tp-container();
+	@include tp-trailer(2);
+	@include tp-space(padding, 1);
+}
+
+.tribe-events-list .type-tribe_events.tribe-events-first {
+	@include tp-padding-leader();
+}
+
+.tribe-events-list .tribe-events-event-cost {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: $text-c;
+	color: $bgc;
+	text-transform: uppercase;
+	font-weight: bold;
+	line-height: 1;
+	@include tp-fs(-2);
+	@include tp-space(padding, .5);
+}
+
+.tribe-events-list-event-title {
+	margin: 0;
+	@include tp-fs(1);
+	@include tp-trailer();
+}
+
+.tribe-events-loop .tribe-events-event-meta {
+	line-height: $line-height;
+	@include tp-fs(-2);
+	@include tp-trailer();
+}
+
+.tribe-events-list .time-details,
+.tribe-events-list .tribe-events-venue-details {
+	line-height: $line-height;
+}
+
+.tribe-events-event-image {
+	display: block;
+	@include tp-trailer();
+}
+
+.tribe-events-button,
+.tribe-events-read-more {
+	@include tp-button();
+}
+
+#tribe-events-footer {
+	margin: 0;
+}
+
+#tribe-events-footer + .tribe-events-ical {
+	float: right;
+	@include tp-fs(-2);
+	@include tp-space(margin-right, 1);
+}

@@ -1,0 +1,14 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="layout-wrapper resource-previews">
+	    {% for type in resource_types %}
+	        <a href="{{type.link}}" class="resource-preview">
+                <h3 class="resource-preview__title">{{type.name}}</h3>
+                {% if type.description %}
+	                <p class="resource-preview__description">{{type.description}}</p>
+	            {% endif %}
+	        </a>
+	    {% endfor %}
+	</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+.single-tribe_events #tribe-events-content {
+	position: relative;
+	@include tp-container();
+}
+
+.tribe-events-back {
+	@include tp-leader();
+	@include tp-trailer();
+}
+
+.tribe-events-back a {
+	@include tp-button();
+	background-color: $text-c;
+	border-color: $text-c;
+	@include tp-fs(-2);
+}
+
+.tribe-events-single-event-title {
+	display: none;
+}
+
+// Needs to be pretty specific
+html #tribe-events-content.tribe-events-single .tribe-events-schedule * {
+	margin: 0;
+	display: inline;
+	font-weight: normal;
+	line-height: $line-height;
+	vertical-align: baseline;
+	@include tp-fs(0);
+}
+
+.single-tribe_events #tribe-events-footer li,
+.single-tribe_events #tribe-events-header li {
+	padding-bottom: 0;
+}
+
+.single-tribe_events .tribe-events-single-event-description {
+	@include tp-trailer(2);
+}
+
+.tribe-events-cal-links {
+	@include tp-trailer();
+}
+
+.tribe-events-cal-links .tribe-events-button {
+	@include tp-fs(-2);
+	@include tp-space(margin-right, .5);
+}
+
+// Meta details
+.tribe-events-meta-group {
+	@include tp-trailer(2);
+	@include tp-fs(-1);
+	@include breakpoint($large-break) {
+		@include tp-fs(-3);
+		@include span($large-cols / 3 of $large-cols);
+		&.tribe-events-meta-group-organizer {
+			@include omega();
+		}
+	}
+}
+
+.tribe-events-meta-group .tribe-events-single-section-title {
+	margin: 0;
+	@include tp-fs(1);
+	@include tp-trailer(1);
+	@include breakpoint($large-break) {
+		@include tp-fs(0);
+	}
+}
+
+.tribe-events-meta-group dd {
+	padding: 0;
+	margin: 0;
+	@include tp-trailer(.25);
+}

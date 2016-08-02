@@ -1,0 +1,22 @@
+{
+    "theme": "dundeemakerspace",
+    "devDomain": "v2-dot-dundeemakerspace-dot-co-dot-uk-dot-dev",
+    "wpContentFolder": "wp-content",
+    "mid-break": "30rem",
+    "large-break": "60rem",
+    "classes": {
+        "nav": "main-nav",
+        "content": "main-content",
+        "footer": "main-footer"
+    },
+    "colors": {
+        "white": "#fefefe",
+        "offwhite": "#f0f0f0",
+        "black": "#0e0e0e",
+        "blue": "#5396C6",
+        "red": "#B8473D",
+        "orange": "#ff702e",
+        "green": "#80C95E"
+    },
+    "footer-widgets": 1
+}

@@ -1,0 +1,42 @@
+{% extends "base.twig" %}
+
+{% block content %}
+   {% if post.home_banner_title or post.home_banner_content %}
+        <div class="block block--banner">
+            <div class="block__inner content-section__content layout-wrapper">
+                {% if post.home_banner_title %}
+                    <h2>{{post.home_banner_title}}</h2>
+                {% endif %}
+                {% if post.home_banner_content %}
+                    <p>{{post.get_field('home_banner_content')}}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if post.home_membership_page %}
+        <div class="block">
+            <div class="block__inner layout-wrapper">
+                <a href="{{post.get_field('home_membership_page')}}" class="button home-cta-button">Become a Member!</a>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="block block--highlight block--three-cols block--last">
+        {% if next_events %}
+            <div class="block__inner layout-wrapper">
+                <h3>Upcoming Events</h3>
+                {% for event in next_events %}
+                    {% if loop.index is divisible by (3) %}
+                        {% set extra_class = ' third' %}
+                    {% endif %}
+                    <a href="{{event.link}}" class="block__triple-column{{extra_class}} home-event">
+                        <h4 class="home-event__title">{{event.title}}</h4>
+                        <time class="home-event__date"datetime="{{event._EventStartDate}}">{{event._EventStartDate|date("l jS F Y @ g:ia")}}</time>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

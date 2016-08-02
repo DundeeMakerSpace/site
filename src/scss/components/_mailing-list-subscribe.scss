@@ -1,0 +1,35 @@
+.mailing-list-subscribe {
+	display: block;
+	text-align: center;
+	@include tp-leader(2);
+}
+
+.mailing-list-subscribe__label,
+.mailing-list-subscribe__input,
+.mailing-list-subscribe__input:hover,
+.mailing-list-subscribe__input:active,
+.mailing-list-subscribe__input:focus,
+.mailing-list-subscribe__button,
+.mailing-list-subscribe__button:hover,
+.mailing-list-subscribe__button:active,
+.mailing-list-subscribe__button:focus {
+	display: inline-block;
+	line-height: 1.2;
+	border: none;
+	@include tp-space(padding, .5);
+	@include tp-fs(1);
+}
+
+.mailing-list-subscribe__label {
+	@include scut-hide-visually();
+}
+
+.mailing-list-subscribe__input {
+
+}
+
+.mailing-list-subscribe__button {
+	background-color: $text-c;
+	color: $bgc;
+	font-weight: bold;
+}

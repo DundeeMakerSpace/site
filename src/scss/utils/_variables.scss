@@ -1,0 +1,146 @@
+// No one likes you IE
+
+$legacy_support_for_ie: false;
+
+// Reassign some config variables for easier use
+$mid-break: map-get($tp-config, mid-break);
+$large-break: map-get($tp-config, large-break);
+$colors: map-get($tp-config, colors);
+
+// Typography
+
+$font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+$font-sans: 'Now', Helvetica, Arial, sans-serif;
+$font-serif: Georgia, serif;
+$font-h:  'Now', Helvetica, Arial, sans-serif;
+$font-body: $font-sans;
+
+$ms-base: 1em;
+$ms-ratio: $minor-third;
+$line-height: 1.5;
+$body-font: $font-body;
+$body-font-weight: 400;
+$min-font: 1rem;
+$max-font: 1.3rem;
+
+// Grid
+
+$small-cols: 4;
+
+$mid-cols: 8;
+$mid-content-cols: 5;
+$mid-sidebar-cols: 3;
+
+$large-cols: 12;
+$large-content-cols: 8;
+$large-sidebar-cols: 4;
+
+$susy: (
+    container: $large-break,
+    columns: 12,
+    gutters: .25,
+    math: fluid,
+    gutter-position: after
+);
+
+$grid-padding: 1.5rem;
+// $column-width: 3;
+// $gutter-width: 1.5;
+
+// $small-grid: $small-cols ($column-width $gutter-width) fluid border-box;
+// $mid-grid: $mid-cols ($column-width $gutter-width) fluid border-box;
+// $large-grid: $large-cols ($column-width $gutter-width) fluid border-box;
+
+// Colors
+
+$text-c: map-get($colors, black);
+$bgc: map-get($colors, white);
+
+$body-color: $text-c;
+$header-color: $text-c;
+
+$border-c: mix($text-c, $bgc);
+
+$link-c: map-get($colors, orange);
+$link-c--hover: map-get($colors, red);
+
+$header-bgc: map-get($colors, black);
+$header-c: map-get($colors, white);
+
+// $nav-bgc: rgba(map-get($colors, white), .95);
+$nav-bgc: transparent;
+
+// $nav-link-c: map-get($colors, black);
+$nav-link-c: map-get($colors, white);
+$nav-link-bg: none;
+
+$nav-link-c--hover: darken($nav-link-c, 30%);
+$nav-link-bg--hover: none;
+
+$nav-link-c--current: $nav-link-c--hover;
+$nav-link-bg--current: none;
+
+$subnav-bgc: map-get($colors, black);
+
+$subnav-link-c: $nav-link-c;
+$subnav-link-bg: $nav-link-bg;
+
+$subnav-link-c--hover: $nav-link-c--hover;
+$subnav-link-bg--hover: $nav-link-bg--hover;
+
+$subnav-link-c--current: map-get($colors, white);
+$subnav-link-bg--current: $nav-link-bg--current;
+
+$footer-bgc: map-get($colors, black);
+$footer-c: lighten(map-get($colors, black), 40%);
+$footer-link-c: map-get($colors, white);
+
+$input-c: lighten($text-c, 20%);
+$input-bg: darken($bgc, 7%);
+$input-border: 3px solid darken($input-bg, 15%);
+
+$input-c--hover: $input-c;
+$input-bg--hover: $input-bg;
+$input-border--hover: 3px solid map-get($colors, blue);
+
+$input-c--active: $text-c;
+$input-bg--active: lighten($bgc, 50%);
+$input-border--active: $input-border--hover;
+
+$button-bgc: map-get($colors, blue);
+$button-c: map-get($colors, white);
+$button-border: 3px solid $button-bgc;
+
+$button-bgc--hover: darken(map-get($colors, blue), 20%);
+$button-c--hover: map-get($colors, white);
+$button-border--hover: 3px solid $button-bgc--hover;
+
+$button-bgc--active: darken(map-get($colors, blue), 25%);
+$button-c--active: darken(map-get($colors, white), 10%);
+$button-border--active: 3px solid $button-bgc--active;
+
+$highlight-bgc: map-get($colors, orange);
+$highlight-c: map-get($colors, white);
+
+$error-c: map-get($colors, red);
+
+$notification-c: map-get($colors, blue);
+$notification-c--error: map-get($colors, red);
+$notification-c--success: map-get($colors, green);
+$notification-c--warning: map-get($colors, orange);
+
+// Transition Times
+
+$transition-fast: .2s;
+$transition-mid: $transition-fast * 2;
+$transition-slow: $transition-mid * 2;
+
+// Input structure
+$input-border-radius: 0;
+$input-font-size: 1em;
+$input-padding-vertical: .5em;
+$input-padding-horizontal: .8em;
+
+// Misc
+
+$gravity-forms: true;

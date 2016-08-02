@@ -1,0 +1,46 @@
+{
+  "author": "Grant Richmond <mail@grant.codes>",
+  "name": "dundee-makerspace",
+  "description": "The Dundee MakerSpace custom WordPress theme and plugins",
+  "version": "1.0.0",
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "breakpoint-sass": "^2.7.0",
+    "browser-sync": "^2.13.0",
+    "cssnano": "^3.7.3",
+    "del": "^2.2.1",
+    "eyeglass": "^0.8.3",
+    "gulp": "^3.9.1",
+    "gulp-json-sass": "0.0.2",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.1.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-svg-sprite": "^1.3.3",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.9",
+    "imports-loader": "^0.6.5",
+    "json-sass": "^1.3.5",
+    "leaflet": "^0.7.7",
+    "modularscale-sass": "^2.1.1",
+    "normalize.css": "^4.2.0",
+    "run-sequence": "^1.2.2",
+    "sc5-styleguide": "^1.0.0",
+    "scut": "^1.4.0",
+    "susy": "^2.2.12",
+    "vinyl-source-stream": "^1.1.0",
+    "webpack": "^1.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DundeeMakerSpace/website.git"
+  },
+  "dependencies": {
+    "list.js": "^1.2.0",
+    "priority-nav": "^1.0.12"
+  }
+}

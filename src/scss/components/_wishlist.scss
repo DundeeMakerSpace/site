@@ -1,0 +1,107 @@
+.wishlist {
+
+}
+
+.wishlist__item {
+
+}
+
+.wishlist__item__title {
+
+}
+
+.wishlist__item__costs {
+	display: block;
+	position: relative;
+	background-color: map-get($colors, black);
+	padding: .2em .6em;
+	border-radius: 5px;
+	overflow: hidden;
+	@include tp-trailer();
+}
+
+.wishlist__item__costs__bar {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	background-color: map-get($colors, orange);;
+}
+
+.wishlist__item__costs__text {
+	display: block;
+	position: relative;
+	z-index: 5;
+	color: map-get($colors, white);
+	font-family: $font-system;
+	font-weight: bold;
+}
+
+.wishlist__item__description {
+	display: block;
+	@include tp-trailer();
+}
+
+.wishlist__item__actions {
+	display: block;
+}
+
+.wishlist__item__actions__action {
+	display: inline-block;
+}
+
+.wishlist__label {
+	display: block;
+}
+
+.wishlist__input {
+	display: block;
+	min-width: 50%;
+	@include tp-trailer(.5);
+}
+
+.wishlist__item__pledge-form {
+	display: block;
+	height: 0;
+	overflow: hidden;
+	@include tp-padding-leader();
+	&:target {
+		height: auto;
+	}
+}
+
+.wishlist__item__pledge-form {
+	small {
+		display: block;
+		@include tp-trailer();
+	}
+}
+
+.wishlist__item__comment-form {
+	display: block;
+	height: 0;
+	overflow: hidden;
+	@include tp-padding-leader();
+	&:target {
+		height: auto;
+	}
+}
+
+.wishlist__item__comments {
+	display: block;
+	height: 0;
+	overflow: hidden;
+	@include tp-padding-leader();
+	&:target {
+		height: auto;
+	}
+}
+
+.wishlist__item__comments__list {
+	@include scut-list-unstyled();
+}
+
+.wishlist__item__comments__comment {
+	@include tp-trailer(1.5);
+}

@@ -1,0 +1,40 @@
+.resource-previews {
+	@include tp-padding-leader(1);
+	@include breakpoint($mid-break) {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-row-gap: 0;
+		// @include tp-space(grid-row-gap, 1);
+		@include tp-space(grid-column-gap, 1);
+	}
+}
+
+.resource-preview {
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	background-color: $text-c;
+	color: $bgc;
+	text-shadow: 0 0 .2em $text-c;
+	transition: background-color $transition-fast, color $transition-fast;
+	@include tp-space(padding, 1);
+	@include tp-trailer();
+	@include breakpoint($mid-break) {
+		@include tp-space(padding, 2);
+		@include tp-space(padding-top, 3);
+		@include tp-space(padding-bottom, 3);
+	}
+
+	@include scut-selected(true) {
+		background-color: lighten($text-c, 5%);
+	}
+}
+
+.resource-preview__title {
+	margin: 0;
+}
+
+.resource-preview__description {
+	margin: 0;
+	@include tp-leader();
+}

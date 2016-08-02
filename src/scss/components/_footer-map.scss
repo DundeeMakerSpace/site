@@ -1,0 +1,14 @@
+.footer-map {
+    @include tp-leader(2);
+    width: 100%;
+    max-height: 50vh;
+    @include tp-space(height, 20);
+}
+
+.footer-map__marker {
+	display: block;
+	width: 12px;
+	height: 12px;
+	border-radius: 6px;
+	background-color: $link-c;
+}

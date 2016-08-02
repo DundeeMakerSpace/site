@@ -1,0 +1,42 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="block" id="projects-sorter">
+        <div class="layout-wrapper">
+            <div class="listing-table-filter">
+                <label class="listing-table-filter__label">Search Projects
+                    <input type="search" class="listing-table-filter__input search">
+                </label>
+            </div>
+            <table class="listing-table projects-listing-table">
+                <thead class="listing-table__head">
+                    <tr>
+                        <th class="sort" data-sort="project">Project</th>
+                        <th class="sort" data-sort="maker">Maker</th>
+                        <th class="sort" data-sort="status">Status</th>
+                        <th class="sort" data-sort="updated">Last Updated</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="list">
+                    {% for project in projects %}
+                        <tr>
+                            <td class="listing-table__row__title"><a href="{{project.link}}" class="project">{{project.title}}</a></td>
+                            <td><a href="{{fn('get_author_posts_url', project.maker.ID)}}" class="maker">{{project.maker.display_name}}</a></td>
+                            <td class="status">{{project.project_status.name}}</td>
+                            <td><date datetime="{{project.post_modified_gmt}}" class="updated">{{project.post_modified_gmt|date('Y-m-d')}}</date></td>
+                            <td><a class="button button--boring" href="{{project.link}}">View <span class="small-screen-hide-text">Project</span></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <div class="pagination pagination-centered hide-if-no-paging"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+{% endblock %}

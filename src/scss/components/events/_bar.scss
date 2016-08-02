@@ -1,0 +1,92 @@
+#tribe-events-bar {
+	background-color: map-get($colors, orange);
+	color: $text-c;
+	@include tp-trailer();
+	@include tp-padding-leader();
+	@include tp-padding-trailer();
+	@include scut-clearfix();
+
+	a {
+		color: $text-c;
+	}
+}
+
+#tribe-bar-form {
+	margin: 0;
+	@include tp-container();
+}
+
+#tribe-bar-collapse-toggle {
+	display: block;
+	@include breakpoint($mid-break) {
+		display: none;
+	}
+}
+
+
+#tribe-bar-views {
+	@include breakpoint($mid-break) {
+		text-align: right;
+		@include span(last 2 of $mid-cols);
+	}
+	@include breakpoint($large-cols) {
+		@include span(last 4 of $large-cols);
+	}
+}
+
+.tribe-bar-views-list {
+	display: none;
+}
+
+.tribe-bar-filters {
+	@include breakpoint($mid-break) {
+		@include span($mid-cols - 2 of $mid-cols);
+	}
+	@include breakpoint($large-cols) {
+		@include span($large-cols - 4 of $large-cols);
+	}
+}
+
+.tribe-bar-filters label {
+	display: block;
+}
+
+.tribe-bar-filters input {
+	display: block;
+	width: 100%;
+}
+
+.tribe-bar-date-filter {
+	@include breakpoint($mid-break) {
+		@include span(3 of 8);
+	}
+}
+
+.tribe-bar-search-filter {
+	@include breakpoint($mid-break) {
+		@include span(3 of 8);
+	}
+}
+
+.tribe-bar-submit {
+	@include breakpoint($mid-break) {
+		@include span(last 2 of 8);
+		// This is like a fake label so the button lines up with the inputs
+		&::before {
+			content: '.';
+			display: block;
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+}
+
+// Helpers
+
+.tribe-clearfix {
+	@include scut-clearfix();
+}
+
+.tribe-events-visuallyhidden {
+	@include scut-hide-visually();
+}

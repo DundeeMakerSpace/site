@@ -1,0 +1,32 @@
+.members-list {
+	@include scut-list-unstyled();
+}
+
+.member {
+	@include scut-clearfix();
+}
+
+.member__image {
+	@include breakpoint($mid-break) {
+		@include span(2 of $mid-cols);
+	}
+	@include breakpoint($large-break) {
+		@include span(4 of $large-cols);
+	}
+
+	img {
+		@include breakpoint($mid-break) {
+			display: block;
+			width: 100%;
+		}
+	}
+}
+
+.member__content {
+	@include breakpoint($mid-break) {
+		@include span(last $mid-cols - 2 of $mid-cols);
+	}
+	@include breakpoint($large-break) {
+		@include span(last $large-cols - 4 of $large-cols);
+	}
+}

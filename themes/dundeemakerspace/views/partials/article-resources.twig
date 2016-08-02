@@ -1,0 +1,60 @@
+<article class="{{post.post_class}}{% if is_archive %} resource-preview{% endif %}">
+    <div class="single-resource__content block block--highlight">
+        <div class="block__inner layout-wrapper">
+            {{post.content}}
+        </div>
+    </div>
+
+    {% if post.get_terms('resource-locations') %}
+        <div class="single-resource__location">
+            <h3>Location</h3>
+            {% for location in post.get_terms('resource-locations') %}
+                <a href="{{location.link}}">{{location.name}}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if post._resources_pricing_members or post._resources_pricing_non_members %}
+        <div class="single-resource__pricing block {{post._resources_training_available == 'on' ? '' : 'block--last'}}">
+            <div class="block__inner layout-wrapper">
+                <h3>Pricing</h3>
+                <dl>
+                    {% if post._resources_pricing_members %}
+                        <dt>Members</dt>
+                        <dd>&pound;{{post._resources_pricing_members}}</dd>
+                    {% endif %}
+                    {% if post._resources_pricing_non_members %}
+                        <dt>Non Members</dt>
+                        <dd>&pound;{{post._resources_pricing_non_members}}</dd>
+                    {% endif %}
+                </dl>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if post._resources_training_available == 'on' %}
+        <div class="single-resource__training block block--banner block--last">
+                <div class="block__inner layout-wrapper">
+                    <h3>Training Details</h3>
+                    {% if post._resources_training_type %}
+                        <span class="single-resource__training__type">Training is {{post._resources_training_type}}</span>
+                    {% endif %}
+                    <dl>
+                        {% if post._resources_training_time %}
+                            <dt>Time</dt>
+                            <dd>{{post._resources_training_time}}</dd>
+                        {% endif %}
+                        {% if trainers %}
+                            <dt>Trainers</dt>
+                            <dd>
+                                {% for trainer in trainers %}
+                                    {# TODO: generate url properly #}
+                                    <a href="/members/#{{trainer.data.user_nicename}}">{{trainer.data.display_name}}</a>{% if not loop.last %},{% endif %}
+                                {% endfor %}
+                            </dd>
+                        {% endif %}
+                    </dl>
+                </div>
+        </div>
+    {% endif %}
+</article>
