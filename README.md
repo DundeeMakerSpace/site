@@ -4,31 +4,15 @@ This is the repo for the Dundee MakerSpace website. It includes the WordPress th
 
 The this is based on [Terminally Pixelated](https://github.com/terminalpixel/terminally-pixelated), developed by [Grant Richmond](https://grant.codes)
 
-## What's in the box?
+## Running locally
 
-Terminally Pixelated comes jam packed full of greatness:
+This repo contains the contents of the `wp-content` folder of our site (excluding 3rd party plugins and media uploads). In order to run it locally for development you must first have a fresh WordPress install running. I recommend using [VVV](https://github.com/Varying-Vagrant-Vagrants/VVV) as it's easy to set up and inculdes the build tool requirements.
 
-- Timber for superior WordPress templating
-- Auto css compression & optimisation
-- Magical font sizing
-- The scut scss library to help you develop faster
-- Loosely follows the block, element, modifier methodology
-- Susy for super semantic grids
-- A shared config that is accessible via Sass, PHP and JavaScript
-- Automatic style guide creation
-- Webpack for JavaScript bundling
-- Browser sync for live reloading and development loveliness
-- Composer support
-- Flickity for beautiful sliders (beware of licenses with this)
-- Photoswipe for nice image zooming
-
-## Getting started
-
-To get started, download however you wish and edit `src/config.json` with your development url then run `npm install`, `composer install` and `gulp build` in the content directory to install the required dependencies.
+To get started clone this repo into your `wp-content` folder. You then require npm, gulp and composer installed and then run `npm install`, `composer install` and `gulp build` in the content directory to install the required dependencies. You can also edit `src/config.json` with your development url to get browser sync working.
 
 Run `gulp watch` in the content directory to watch for file changes and start a browser sync server.
 
-Run `gulp build` to fully compile your theme.
+Run `gulp build` to fully compile the theme.
 
 ## Diving in
 
@@ -48,7 +32,7 @@ This will create `padding-bottom` on an element with the value of half of your b
 
 There is also `tp-leader`, `tp-trailer`, `tp-padding-leader` and `tp-padding-trailer` to easily add vertical margins and paddings.
 
-## Enqueuing resources
+### Enqueuing resources
 
 There is a little wrapper to be able to quickly register or enqueue JavaScript and CSS files from your theme:
 
@@ -59,7 +43,7 @@ And an accompanying helper for getting the url of a theme resource:
 
 	TPHelpers::get_theme_resource_uri( '/path/to/file.txt' );
 
-## Svg icons
+### Svg icons
 
 Svg files that are placed in the `src/svgs/` folder are automatically squashed into a single svg and retrieved via svg symbols.
 
@@ -68,20 +52,3 @@ To use an icon in a twig template you can simply use the `icon` function. For ex
 There is also a function to grab the html for an icon in PHP. The previous example would then become:
 
     $icon = TPHelpers::icon('facebook');
-
-## Photoswipe setup
-
-My photoswipe example require a simple html setup with images in `a` tags with data attributes for the width and height of the full size image:
-
-    <div class="gallery">
-        <a href="{{image.src}}" data-width="{{image.width}}" data-height="{{image.height}}">
-            <img src="{{image.src|resize(200,200)}}" alt="{{image.alt}}" />
-        </a>
-    </div>
-
-## Requirements
-
-There are a couple of dependencies required to build with Terminally Pixelated:
-
-- Gulp
-- Composer
