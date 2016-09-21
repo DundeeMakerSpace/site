@@ -1,0 +1,57 @@
+build:
+    frontend:
+        image: node
+        commands:
+            - npm -g install gulp
+            - npm install
+            - gulp build
+    backend:
+        image: wpbakery/ci-wordpress:php7
+        environment:
+           WP_TESTS_DIR: /tmp/wordpress-tests-lib
+           WP_TESTS_ABSPATH: /tmp/wordpress-tests-lib
+        commands:
+            - service mysql start
+            - apt-get update
+            - apt-get install subversion libjpeg-dev libpng-dev libfreetype6-dev
+            - docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+            - docker-php-ext-install -j$(nproc) gd
+            - php --ini
+            - composer install
+            - cp -r bin mu-plugins plugins tests themes phpunit.xml.dist /var/www/html/wp-content
+            - bash /var/www/html/wp-content/bin/install-wp-tests.sh drone root "" localhost latest
+            - cd /var/www/html/wp-content
+            - wp theme activate dundeemakerspace --allow-root
+            - wp package install itspriddle/wp-cli-tgmpa-plugin --allow-root
+            - wp tgmpa-plugin install --all --activate --allow-root
+            - phpunit
+deploy:
+    rsync:
+        user: $$RSYNC_USER
+        host: $$RSYNC_HOST
+        port: $$RSYNC_PORT
+        source: themes/dundeemakerspace
+        target: $$RSYNC_WP_DIR/wp-content/themes
+        delete: true
+        recursive: true
+    rsync:
+        user: $$RSYNC_USER
+        host: $$RSYNC_HOST
+        port: $$RSYNC_PORT
+        source: "plugins/makerspace*"
+        target: $$RSYNC_WP_DIR/wp-content/plugins
+        delete: true
+        recursive: true
+    rsync:
+        user: $$RSYNC_USER
+        host: $$RSYNC_HOST
+        port: $$RSYNC_PORT
+        source: mu-plugins
+        target: $$RSYNC_WP_DIR/wp-content
+        delete: true
+        recursive: true
+notify:
+    slack:
+        webhook_url: $$SLACK_WEBHOOK_URL
+        channel: $$SLACK_CHANNEL
+        username: $$SLACK_USERNAME
