@@ -127,7 +127,7 @@ if ( ! class_exists( 'MakerspaceOpen' ) ) {
 			foreach ( $users as $user ) {
 				$membership = pmpro_getMembershipLevelForUser( $user->ID );
 				$hide_member = get_user_meta( $user->ID, 'makerspace_hide_from_listings', true );
-				if ( ( $membership && $membership->id === static::$membership_level_id ) && ( ! $hide_member || true === $force_all ) ) {
+				if ( ( $membership && (int) $membership->id === static::$membership_level_id ) && ( ! $hide_member || true === $force_all ) ) {
 					$member = new StdClass();
 					$member->display_name = $user->data->display_name;
 					$member->email = $user->data->user_email;
