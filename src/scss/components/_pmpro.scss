@@ -1,0 +1,53 @@
+// Paid membership pro specific styles
+
+.pmpro_form {
+	div {
+		position: relative;
+		overflow: hidden;
+	}
+
+	label {
+		display: block;
+		text-align: left;
+	}
+
+	.input,
+	select {
+		width: 100%;
+		@include tp-trailer(.5);
+	}
+
+	.pmpro_asterisk abbr {
+		display: inline-block;
+		text-decoration: none;
+		color: $error-c;
+		position: absolute;
+		pointer-events: none;
+		@include tp-fs(1);
+		@include tp-space(right, .5);
+		@include tp-space(bottom, .5);
+	}
+
+	.pmpro_payment-expiration {
+		text-align: center;
+	}
+
+	#ExpirationMonth {
+		width: 45%;
+		float: left;
+	}
+	#ExpirationYear {
+		width: 45%;
+		float: right;
+	}
+	@include breakpoint($mid-break) {
+		#ExpirationMonth,
+		#ExpirationYear {
+			width: 48%;
+		}
+	}
+
+	.pmpro_hidden {
+		display: none;
+	}
+}
