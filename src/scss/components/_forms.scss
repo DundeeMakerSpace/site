@@ -224,5 +224,8 @@ input[type=button] {
         @extend .block;
         @extend .block--banner;
         @include tp-space(padding, 1);
+        &:empty {
+            display: none;
+        }
     }
 }
