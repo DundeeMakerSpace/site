@@ -2,7 +2,7 @@
 /**
  * The makerspace wishlist functionality
  *
- * @package  dundee-makerspace
+ * @package dundee-makerspace
  */
 
 if ( ! class_exists( 'MakerspaceWishlist' ) ) {

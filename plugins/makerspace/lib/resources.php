@@ -1,12 +1,8 @@
 <?php
 /**
- * Plugin Name: MakerSpace Resources
- * Description: The Resource post type for MakerSpace resources
- * Version: 1.0.0
- * Author: Grant Richmond
- * Author URI: https://grant.codes
+ * The Resource post type for MakerSpace resources
  *
- * @package  dundee-makerspace
+ * @package dundee-makerspace
  */
 
 if ( ! class_exists( 'MakerspaceResources' ) ) {
@@ -29,7 +25,7 @@ if ( ! class_exists( 'MakerspaceResources' ) ) {
 			add_action( 'cmb2_admin_init', array( $this, 'metaboxes' ) );
 			add_action( 'admin_menu' , array( $this, 'remove_default_metabox' ) );
 			add_action( 'cmb_render_resource_qrcode', array( $this, 'cmb_render_resource_qrcode' ), 10 );
-			require( 'makerspace-wishlist.php' );
+			// require( 'makerspace-wishlist.php' );
 		}
 
 		/**

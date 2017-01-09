@@ -1,12 +1,8 @@
 <?php
 /**
- * Plugin Name: MakerSpace Membership Extras
- * Description: Adds and fixes functionality in Paid Memberships Pros for MakerSpace use
- * Version: 1.0.0
- * Author: Grant Richmond
- * Author URI: https://grant.codes
+ * MakerSpace Membership Extras
  *
- * @package  dundee-makerspace
+ * @package dundee-makerspace
  */
 
 if ( ! class_exists( 'MakerspaceMembershipExtras' ) ) {

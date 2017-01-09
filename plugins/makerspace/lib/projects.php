@@ -1,12 +1,8 @@
 <?php
 /**
- * Plugin Name: MakerSpace Projects
- * Description: The project post type for MakerSpace projects
- * Version: 1.0.0
- * Author: Grant Richmond
- * Author URI: https://grant.codes
+ * The project post type for MakerSpace projects
  *
- * @package  dundee-makerspace
+ * @package dundee-makerspace
  */
 
 if ( ! class_exists( 'MakerspaceProjects' ) ) {

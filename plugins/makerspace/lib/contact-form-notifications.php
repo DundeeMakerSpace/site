@@ -1,10 +1,6 @@
-<?php if ( ! defined( 'ABSPATH' ) ) exit;
+<?php
 /**
- * Plugin Name: MakerSpace Contact Form Notifications
- * Description: Sends notifications to the slack group on new form entries and reminders about unreplied messages
- * Version: 1.0.0
- * Author: Grant Richmond
- * Author URI: https://grant.codes
+ * Contact form notification class
  *
  * @package dundee-makerspace
  */
@@ -43,7 +39,7 @@ class MakerspaceContactFormNotifications {
 	 * @return array          Updated actions
 	 */
 	function register_actions( $actions ) {
-		require_once( dirname( __FILE__ ) . '/lib/ninjaforms-slack-action.php' );
+		require_once( __DIR__ . '/ninjaforms-slack-action.php' );
 		$actions['makerspace-slack-notification'] = new MakerspaceNinjaformsSlackAction();
 		return $actions;
 	}

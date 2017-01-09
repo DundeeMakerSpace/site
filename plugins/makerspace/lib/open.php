@@ -1,11 +1,9 @@
 <?php
 /**
- * Plugin Name: MakerSpace Open Status
- * Description: A little plugin to determine whether the space is open or not and who is there
- * Version: 1.0.0
- * Author: Grant Richmond
- * Author URI: https://grant.codes
-*/
+ * MakerSpace Open Status
+ *
+ * @package dundee-makerspace
+ */
 
 if ( ! class_exists( 'MakerspaceOpen' ) ) {
 
@@ -411,7 +409,7 @@ if ( ! class_exists( 'MakerspaceOpen' ) ) {
 		 */
 		function scripts() {
 			if ( get_current_user_id() ) {
-				wp_register_script( 'makerspace-checkin', plugins_url( '/checkinout.js', __FILE__ ), array( 'jquery' ), false, true );
+				wp_register_script( 'makerspace-checkin', plugins_url( '/js/checkinout.js', __FILE__ ), array( 'jquery' ), false, true );
 				wp_localize_script( 'makerspace-checkin', 'MakerspaceCheckinSettings', array(
 					'root' => esc_url_raw( rest_url() ),
 					'nonce' => wp_create_nonce( 'wp_rest' ),

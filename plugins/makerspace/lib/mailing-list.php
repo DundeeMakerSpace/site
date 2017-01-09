@@ -1,12 +1,8 @@
 <?php
 /**
- * Plugin Name: MakerSpace Mailing List Subscribe
- * Description: Adds stuff for subscribing to the mailing list
- * Version: 1.0.0
- * Author: Grant Richmond
- * Author URI: https://grant.codes
+ * MakerSpace Mailing List Subscribe
  *
- * @package  dundee-makerspace
+ * @package dundee-makerspace
  */
 
 if ( ! class_exists( 'MakerspaceMailingListSubscribe' ) ) {
