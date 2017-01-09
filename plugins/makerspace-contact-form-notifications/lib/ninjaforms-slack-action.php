@@ -5,8 +5,13 @@
  * @package dundee-makerspace
 */
 if ( class_exists( 'NF_Abstracts_Controller' ) ) {
+	/**
+	 * The custom slack action for ninjaforms
+	 */
 	class MakerspaceNinjaformsSlackAction extends NF_Abstracts_Action {
 		/**
+		 * The name of the action
+		 *
 		 * @var string
 		 */
 		protected $_name = 'makerspace-slack-notification';
@@ -85,7 +90,7 @@ if ( class_exists( 'NF_Abstracts_Controller' ) ) {
 			$message = $action_settings['text'];
 			$message .= "\n\n";
 			$message .= 'Reply to this message and delete it from the admin at <' . get_admin_url() . 'edit.php?post_status=all&post_type=nf_sub&form_id=' . $form_id . '> to stop receiving reminders.';
-			MakerspaceContactFormNotifications::send_slack_notification( $action_settings['name'], $action_settings['text'], $action_settings['webhook'] ) ;
+			MakerspaceContactFormNotifications::send_slack_notification( $action_settings['name'], $action_settings['text'], $action_settings['webhook'] );
 			return $data;
 		}
 	}
