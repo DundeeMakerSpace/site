@@ -27,4 +27,5 @@ terminally_pixelated_autoload( 'TPHelpers' );
 terminally_pixelated_autoload( 'TerminallyPixelatedBase' );
 terminally_pixelated_autoload( 'TerminallyPixelatedCustom', true );
 terminally_pixelated_autoload( 'TerminallyPixelatedCustomizer', true );
+terminally_pixelated_autoload( 'TerminallyPixelatedCustomFields', true );
 terminally_pixelated_autoload( 'TerminallyPixelatedWoocommerce', true );

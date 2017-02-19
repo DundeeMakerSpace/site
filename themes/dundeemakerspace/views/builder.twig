@@ -11,50 +11,49 @@
     </header>
 
     <div class="page-builder">
-        {% for block in post.get_field('page_builder_blocks') %}
-            {% if block.acf_fc_layout == 'content' %}
+        {% for block in blocks %}
+            {% if block._type == '_content' %}
                 <div class="block content-section">
-                    <div class="block__inner content-section__content layout-wrapper">{{block.content}}</div>
+                    <div class="block__inner content-section__content layout-wrapper">{{block.content|wpautop}}</div>
                 </div>
-            {% elseif block.acf_fc_layout == 'highlighted_content' %}
+            {% elseif block._type == '_highlighted_content' %}
                 <div class="content-section block block--highlight">
-                    <div class="block__inner content-section__content layout-wrapper">{{block.content}}</div>
+                    <div class="block__inner content-section__content layout-wrapper">{{block.content|wpautop}}</div>
                 </div>
-            {% elseif block.acf_fc_layout == 'separator' %}
+            {% elseif block._type == '_separator' %}
                 <div class="content-section block block--separator">
                     <div class="block__inner"></div>
                 </div>
-            {% elseif block.acf_fc_layout == 'banner' %}
+            {% elseif block._type == '_banner' %}
                 <div class="content-section block block--banner">
                     <div class="block__inner content-section__content layout-wrapper">
                         <h2>{{block.title}}</h2>
-                        {{block.content}}
+                        {{block.content|wpautop}}
                     </div>
                 </div>
-            {% elseif block.acf_fc_layout == '2_columns' %}
+            {% elseif block._type == '_2_columns' %}
                 <div class="content-section block block--two-cols">
                     <div class="block__inner layout-wrapper">
                         {% for column in block.columns %}
                             {% if loop.index is divisible by (2) %}
                                 {% set extra_class = ' even' %}
                             {% endif %}
-                            <div class="block__double-column{{extra_class}}">{{column.content}}</div>
+                            <div class="block__double-column{{extra_class}}">{{column.content|wpautop}}</div>
                         {% endfor %}
                     </div>
                 </div>
-            {% elseif block.acf_fc_layout == '3_columns' %}
+            {% elseif block._type == '_3_columns' %}
                 <div class="content-section block block--three-cols">
                     <div class="block__inner layout-wrapper">
                         {% for column in block.columns %}
                             {% if loop.index is divisible by (3) %}
                                 {% set extra_class = ' third' %}
                             {% endif %}
-                            <div class="block__triple-column{{extra_class}}">{{column.content}}</div>
+                            <div class="block__triple-column{{extra_class}}">{{column.content|wpautop}}</div>
                         {% endfor %}
                     </div>
                 </div>
             {% endif %}
-            {# {{block|print_r}} #}
         {% endfor %}
     </div>
 {% endblock %}

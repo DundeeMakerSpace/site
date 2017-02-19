@@ -1,23 +1,23 @@
 {% extends "base.twig" %}
 
 {% block content %}
-   {% if post.home_banner_title or post.home_banner_content %}
+   {% if post._home_banner_title or post._home_banner_content %}
         <div class="block block--banner">
             <div class="block__inner content-section__content layout-wrapper">
-                {% if post.home_banner_title %}
-                    <h2>{{post.home_banner_title}}</h2>
+                {% if post._home_banner_title %}
+                    <h2>{{post._home_banner_title}}</h2>
                 {% endif %}
-                {% if post.home_banner_content %}
-                    <p>{{post.get_field('home_banner_content')}}</p>
+                {% if post._home_banner_content %}
+                    <p>{{post._home_banner_content|wpautop}}</p>
                 {% endif %}
             </div>
         </div>
     {% endif %}
 
-    {% if post.home_membership_page %}
+    {% if post._home_membership_page %}
         <div class="block">
             <div class="block__inner layout-wrapper">
-                <a href="{{post.get_field('home_membership_page')}}" class="button home-cta-button">Become a Member!</a>
+                <a href="{{fn('get_permalink', post._home_membership_page|first)}}" class="button home-cta-button">Become a Member!</a>
             </div>
         </div>
     {% endif %}

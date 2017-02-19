@@ -15,6 +15,7 @@
         "tgmpa/tgm-plugin-activation": "^2.5",
         "zamoose/themehookalliance": "dev-master",
         "webdevstudios/cmb2": "v2.2.2.1",
-        "endroid/qrcode": "^1.7"
+        "endroid/qrcode": "^1.7",
+        "htmlburger/carbon-fields": "^1.5"
     }
 }

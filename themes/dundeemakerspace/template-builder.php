@@ -14,8 +14,10 @@ if ( ! is_singular() ) {
 }
 $context['title'] = false;
 
-if ( get_field( 'hide_title' ) ) {
+if ( carbon_get_post_meta( $context['post']->id, 'crb_hide_title', 'checkbox' ) ) {
 	$context['hide_title'] = true;
 }
+
+$context['blocks'] = carbon_get_post_meta( $context['post']->id, 'crb_page_builder_blocks', 'complex' );
 
 Timber::render( 'builder.twig', $context );
