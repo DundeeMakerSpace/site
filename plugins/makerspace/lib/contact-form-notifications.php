@@ -100,7 +100,7 @@ class MakerspaceContactFormNotifications {
 							$message = 'There are old messages needing to be delt with:';
 							$message .= "\n\n";
 							$message .= 'Reply to messages and delete them from the admin at <' . get_admin_url() . 'edit.php?post_status=all&post_type=nf_sub&form_id=' . $form_id . '> to stop receiving reminders.';
-							MakerspaceContactFormNotifications::send_slack_notification( $action_settings['name'], $action_settings['text'], $action_settings['webhook'] );
+							MakerspaceContactFormNotifications::send_slack_notification( $action_settings['name'], $message, $action_settings['webhook'] );
 						}
 					}
 				}
