@@ -31,24 +31,6 @@ class TerminallyPixelatedCustomizer {
 			'description' => 'Edit various theme settings',
 		) );
 
-		$wp_customize->add_setting( 'terminally_pixelated_logo', array(
-			'default' => '',
-			'type' => 'theme_mod',
-			'capability' => 'edit_theme_options',
-		) );
-
-		$wp_customize->add_control(
-			new WP_Customize_Image_Control(
-				$wp_customize,
-				'terminally_pixelated_logo',
-				array(
-					'label'          => 'Logo',
-					'section'        => 'terminally_pixelated_settings',
-					'settings'       => 'terminally_pixelated_logo',
-				)
-			)
-		);
-
 		$wp_customize->add_setting( 'terminally_pixelated_googleanalytics', array(
 			'default' => '',
 			'type' => 'option',
@@ -136,6 +118,24 @@ class TerminallyPixelatedCustomizer {
 					'label'          => 'Footer Text',
 					'section'        => 'terminally_pixelated_settings',
 					'settings'       => 'terminally_pixelated_footer_text',
+				)
+			)
+		);
+
+		$wp_customize->add_setting( 'terminally_pixelated_button_color', array(
+			'default' => TPHelpers::get_setting( 'colors' )->blue,
+			'type' => 'option',
+			'capability' => 'edit_theme_options',
+		) );
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'terminally_pixelated_button_color',
+				array(
+					'label'          => 'Button Color',
+					'section'        => 'colors',
+					'settings'       => 'terminally_pixelated_button_color',
 				)
 			)
 		);

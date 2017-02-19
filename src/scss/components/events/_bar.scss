@@ -1,5 +1,5 @@
 #tribe-events-bar {
-	background-color: map-get($colors, orange);
+	background-color: map-get($colors, black);
 	color: $text-c;
 	@include tp-trailer();
 	@include tp-padding-leader();

@@ -14,9 +14,9 @@ class TerminallyPixelatedBase {
 	 * Let's go!
 	 */
 	function __construct() {
-		$this->add_support();
 		$this->add_sidebars();
 		$this->add_menus();
+		add_action( 'after_setup_theme', array( $this, 'add_support' ) );
 		add_action( 'init', array( $this, 'remove_crap' ) );
 		add_action( 'init', array( $this, 'editor_style' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_styles' ) );
@@ -33,12 +33,24 @@ class TerminallyPixelatedBase {
 	/**
 	 * Adds theme support for stuff
 	 */
-	private function add_support() {
+	public function add_support() {
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'menus' );
 		add_theme_support( 'html5' );
 		add_theme_support( 'title-tag' );
+		$defaults = array(
+			'default-preset' => 'default',
+			'default-position-x' => 'center',
+			'default-position-y' => 'center',
+			'default-size' => 'cover',
+			'default-repeat' => 'no-repeat',
+			'default-attachment' => 'scroll',
+			'default-color' => TPHelpers::get_setting( 'colors' )->black,
+			'wp-head-callback' => array( $this, 'custom_background' ),
+		);
+		add_theme_support( 'custom-background', $defaults );
+		add_theme_support( 'custom-logo' );
 	}
 
 	/**
@@ -67,15 +79,15 @@ class TerminallyPixelatedBase {
 	 */
 	public function remove_crap() {
 		if ( ! is_admin() ) {
-		    remove_action( 'wp_head', 'feed_links_extra' ); // Display the links to the extra feeds such as category feeds
-		    remove_action( 'wp_head', 'feed_links' ); // Display the links to the general feeds: Post and Comment Feed
-		    remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
-		    remove_action( 'wp_head', 'wlwmanifest_link' ); // Display the link to the Windows Live Writer manifest file.
-		    remove_action( 'wp_head', 'index_rel_link' ); // index link
-		    remove_action( 'wp_head', 'parent_post_rel_link', 10 ); // prev link
-		    remove_action( 'wp_head', 'start_post_rel_link', 10 ); // start link
-		    remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 ); // Display relational links for the posts adjacent to the current post.
-		    remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version.
+			remove_action( 'wp_head', 'feed_links_extra' ); // Display the links to the extra feeds such as category feeds
+			remove_action( 'wp_head', 'feed_links' ); // Display the links to the general feeds: Post and Comment Feed
+			remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
+			remove_action( 'wp_head', 'wlwmanifest_link' ); // Display the link to the Windows Live Writer manifest file.
+			remove_action( 'wp_head', 'index_rel_link' ); // index link
+			remove_action( 'wp_head', 'parent_post_rel_link', 10 ); // prev link
+			remove_action( 'wp_head', 'start_post_rel_link', 10 ); // start link
+			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 ); // Display relational links for the posts adjacent to the current post.
+			remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version.
 		}
 	}
 
@@ -96,7 +108,6 @@ class TerminallyPixelatedBase {
 	 * Enqueue / register styles
 	 */
 	public function add_styles() {
-		wp_enqueue_style( 'brick-fonts', 'https://brick.a.ssl.fastly.net/Anonymous+Pro:400,400i/Ubuntu:700', false );
 		TPHelpers::enqueue( 'style.css' );
 	}
 
@@ -108,7 +119,6 @@ class TerminallyPixelatedBase {
 		wp_localize_script( 'js/app.js', 'TerminallyPixelated', TPHelpers::get_setting() );
 		wp_enqueue_script( 'js/app.js' );
 	}
-
 
 	/**
 	 * Register sidebars
@@ -154,6 +164,9 @@ class TerminallyPixelatedBase {
 	 * @return array          The updated timber context
 	 */
 	public function timber_context( $context ) {
+
+		// Add logo.
+		$context['logo'] = get_custom_logo();
 
 		// Add menu.
 		$context['main_menu'] = new TimberMenu( 'main' );
@@ -233,11 +246,127 @@ class TerminallyPixelatedBase {
 	 * @return object       Updated twig object
 	 */
 	function twig_extensions( $twig ) {
-	    $icon_function = new Twig_SimpleFunction('icon', function ( $context, $icon ) {
-	        return TPHelpers::icon( $icon, $context['svg_sprite'] );
-	    }, array( 'needs_context' => true ) );
-	    $twig->addFunction( $icon_function );
-	    return $twig;
+		$icon_function = new Twig_SimpleFunction('icon', function ( $context, $icon ) {
+			return TPHelpers::icon( $icon, $context['svg_sprite'] );
+		}, array( 'needs_context' => true ) );
+		$twig->addFunction( $icon_function );
+		return $twig;
+	}
+
+	function custom_background() {
+		$background = set_url_scheme( get_background_image() );
+		$color = get_background_color();
+		if ( get_theme_support( 'custom-background', 'default-color' ) === $color ) {
+			$color = false;
+		}
+
+		if ( ! $background && ! $color ) {
+			if ( is_customize_preview() ) {
+				echo '<style type="text/css" id="custom-background-css"></style>';
+			}
+			return;
+		}
+
+		$button_color = get_option( 'terminally_pixelated_button_color' );
+
+		$color_style = $color ? "background-color: #$color;" : '';
+		$image_style = '';
+
+		if ( $background ) {
+			$image = ' background-image: url(' . wp_json_encode( $background ) . ');';
+
+			// Background Position.
+			$position_x = get_theme_mod( 'background_position_x', get_theme_support( 'custom-background', 'default-position-x' ) );
+			$position_y = get_theme_mod( 'background_position_y', get_theme_support( 'custom-background', 'default-position-y' ) );
+			if ( ! in_array( $position_x, array( 'left', 'center', 'right' ), true ) ) {
+				$position_x = 'center';
+			}
+			if ( ! in_array( $position_y, array( 'top', 'center', 'bottom' ), true ) ) {
+				$position_y = 'center';
+			}
+
+			$position = " background-position: $position_x $position_y;";
+
+			// Background Size.
+			$size = get_theme_mod( 'background_size', get_theme_support( 'custom-background', 'default-size' ) );
+			if ( ! in_array( $size, array( 'auto', 'contain', 'cover' ), true ) ) {
+				$size = 'cover';
+			}
+			$size = " background-size: $size;";
+
+			// Background Repeat.
+			$repeat = get_theme_mod( 'background_repeat', get_theme_support( 'custom-background', 'default-repeat' ) );
+			if ( ! in_array( $repeat, array( 'repeat-x', 'repeat-y', 'repeat', 'no-repeat' ), true ) ) {
+				$repeat = 'no-repeat';
+			}
+			$repeat = " background-repeat: $repeat;";
+
+			// Background Scroll.
+			$attachment = get_theme_mod( 'background_attachment', get_theme_support( 'custom-background', 'default-attachment' ) );
+			if ( 'fixed' !== $attachment ) {
+				$attachment = 'scroll';
+			}
+			$attachment = " background-attachment: $attachment;";
+
+			$image_style = $image . $position . $size . $repeat . $attachment;
+		}
+		$combined_style = $color_style . $image_style;
+		?>
+			<style type="text/css" id="custom-background-css">
+				.main-header-nav-wrap { <?php echo trim( $combined_style ); ?> }
+				<?php if ( $color ) : ?>
+					.block--banner,
+					.footer-map__marker,
+					.wishlist__item__costs__bar,
+					#tribe-events-bar,
+					input[type="radio"]:checked:after,
+					.pagination__link:hover,
+					.pagination__link:focus,
+					.pagination__link:active {
+						background-color: #<?php echo $color; ?>;
+					}
+					.home-cta-button {
+						background-color: #<?php echo $color; ?>;
+						border-color: #<?php echo $color; ?>;
+					}
+					a,
+					.footer-widgets a:hover,
+					.footer-widgets a:focus,
+					.footer-widgets a:active {
+						color: #<?php echo $color; ?>;
+					}
+					a:hover,
+					a:focus,
+					a:active {
+						color: <?php echo TPHelpers::color_luminance( $color, 0.7 ); ?>;
+					}
+				<?php endif; ?>
+				<?php if ( $button_color ) : ?>
+					button,
+					.button,
+					input[type=submit],
+					input[type=button] {
+						background-color: <?php echo $button_color; ?>;
+						border-color: <?php echo $button_color; ?>;
+					}
+					button:hover,
+					button:focus,
+					button:active,
+					.button:hover,
+					.button:focus,
+					.button:active,
+					input[type=submit]:hover,
+					input[type=submit]:focus,
+					input[type=submit]:active,
+					input[type=button]:hover,
+					input[type=button]:focus,
+					input[type=button]:active {
+						background-color: <?php echo TPHelpers::color_luminance( $button_color, -0.3 ); ?>;
+						border-color: <?php echo TPHelpers::color_luminance( $button_color, -0.3 ); ?>;
+					}
+				<?php endif; ?>
+			</style>
+		<?php
 	}
 
 	/**
@@ -248,13 +377,13 @@ class TerminallyPixelatedBase {
 	public function google_analytics() {
 		if ( $ga_id = get_option( 'terminally_pixelated_googleanalytics' ) ) : ?>
 			<script>
-	            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-	            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-	            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-	            e.src='//www.google-analytics.com/analytics.js';
-	            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-	            ga('create','<?php echo $ga_id; ?>');ga('send','pageview');
-	        </script>
+				(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+				function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+				e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+				e.src='//www.google-analytics.com/analytics.js';
+				r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+				ga('create','<?php echo $ga_id; ?>');ga('send','pageview');
+			</script>
 		<?php endif;
 	}
 
@@ -266,11 +395,11 @@ class TerminallyPixelatedBase {
 	public function require_plugins() {
 		$plugins = array(
 			array(
-	            'name'             => 'Timber Library',
-	            'slug'             => 'timber-library',
-	            'required'         => true,
-	            'force_activation' => true,
-	        ),
+				'name'             => 'Timber Library',
+				'slug'             => 'timber-library',
+				'required'         => true,
+				'force_activation' => true,
+			),
 		);
 		tgmpa( $plugins );
 	}

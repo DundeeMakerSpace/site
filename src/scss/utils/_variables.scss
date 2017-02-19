@@ -61,7 +61,7 @@ $header-color: $text-c;
 
 $border-c: mix($text-c, $bgc);
 
-$link-c: map-get($colors, orange);
+$link-c: map-get($colors, blue);
 $link-c--hover: map-get($colors, red);
 
 $header-bgc: map-get($colors, black);
@@ -119,7 +119,7 @@ $button-bgc--active: darken(map-get($colors, blue), 25%);
 $button-c--active: darken(map-get($colors, white), 10%);
 $button-border--active: 3px solid $button-bgc--active;
 
-$highlight-bgc: map-get($colors, orange);
+$highlight-bgc: map-get($colors, black);
 $highlight-c: map-get($colors, white);
 
 $error-c: map-get($colors, red);

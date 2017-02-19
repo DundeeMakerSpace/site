@@ -13,10 +13,10 @@
         "white": "#fefefe",
         "offwhite": "#f0f0f0",
         "black": "#0e0e0e",
-        "blue": "#5396C6",
-        "red": "#B8473D",
-        "orange": "#ff702e",
-        "green": "#80C95E"
+        "blue": "#5261c5",
+        "red": "#c25049",
+        "orange": "#c4974f",
+        "green": "#58c78b"
     },
     "footer-widgets": 1
 }

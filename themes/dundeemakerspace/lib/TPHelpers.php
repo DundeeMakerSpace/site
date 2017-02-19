@@ -100,4 +100,28 @@ class TPHelpers {
 	    }
 	    return '<svg class="tp-icon tp-icon--' . $icon . '"><use xlink:href="' . $svg . '#' . $icon . '"></use></svg>';
 	}
+
+	/**
+	 * Lighten or darkens a given hex color
+	 * Thanks to https://gist.github.com/stephenharris/5532899
+	 *
+	 * @param  string $hex     The hex color (with or without #).
+	 * @param  float  $percent The amount to lighten / darken the color. 0.2 = 20% brighter. -0.2 = 20% darker.
+	 * @return string          The updated color (with leading #)
+	 */
+	public static function color_luminance( $hex, $percent ) {
+		// Validate hex string.
+		$hex = preg_replace( '/[^0-9a-f]/i', '', $hex );
+		$new_hex = '#';
+		if ( strlen( $hex ) < 6 ) {
+			$hex = $hex[0] + $hex[0] + $hex[1] + $hex[1] + $hex[2] + $hex[2];
+		}
+		// Convert to decimal and change luminosity.
+		for ( $i = 0; $i < 3; $i++ ) {
+			$dec = hexdec( substr( $hex, $i * 2, 2 ) );
+			$dec = min( max( 0, $dec + $dec * $percent ), 255 );
+			$new_hex .= str_pad( dechex( $dec ) , 2, 0, STR_PAD_LEFT );
+		}
+		return $new_hex;
+	}
 }
