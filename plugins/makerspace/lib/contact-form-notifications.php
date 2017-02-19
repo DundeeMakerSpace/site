@@ -92,16 +92,20 @@ class MakerspaceContactFormNotifications {
 				$type = $action_settings['type'];
 				if ( 'makerspace-slack-notification' === $type ) {
 					$submissions = $form->get_subs();
+					$waiting_count = 0;
 					foreach ( $submissions as $submission ) {
 						$post = get_post( $submission->get_id() );
 						// TODO: Generate the text of the message again.
 						if ( (strtotime( $post->post_date ) + self::$reminder_delay ) < date( 'U' ) ) {
-							// Send reminder notification about this message.
-							$message = 'There are old messages needing to be delt with:';
-							$message .= "\n\n";
-							$message .= 'Reply to messages and delete them from the admin at <' . get_admin_url() . 'edit.php?post_status=all&post_type=nf_sub&form_id=' . $form_id . '> to stop receiving reminders.';
-							MakerspaceContactFormNotifications::send_slack_notification( $action_settings['name'], $message, $action_settings['webhook'] );
+							// This message is old, so send a reminder about it.
+							$waiting_count++;
 						}
+					}
+					if ( $waiting_count > 0 ) {
+						$message = 'There are ' . $waiting_count . ' old messages needing to be delt with:';
+						$message .= "\n\n";
+						$message .= 'Reply to messages and delete them from the admin at <' . get_admin_url() . 'edit.php?post_status=all&post_type=nf_sub&form_id=' . $form_id . '> to stop receiving reminders.';
+						MakerspaceContactFormNotifications::send_slack_notification( $action_settings['name'], $message, $action_settings['webhook'] );
 					}
 				}
 			}
