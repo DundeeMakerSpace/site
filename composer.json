@@ -12,14 +12,13 @@
     },
     "extra": {
         "installer-paths": {
-            "mu-plugins/terminally-pixelated/vendor/{$name}/": ["htmlburger/carbon-fields"],
-            "mu-plugins/terminally-pixelated/vendor/{$name}/": ["webdevstudios/cmb2"]
+            "mu-plugins/terminally-pixelated/vendor/{$name}/": ["htmlburger/carbon-fields", "webdevstudios/cmb2"]
         }
     },
     "autoload": {
         "files": [
             "mu-plugins/terminally-pixelated/vendor/zamoose/themehookalliance/tha-theme-hooks.php",
-            "mu-plugins/terminally-pixelated/vendor/webdevstudios/cmb2/init.php"
+            "mu-plugins/terminally-pixelated/vendor/cmb2/init.php"
         ]
     },
     "minimum-stability": "dev",
