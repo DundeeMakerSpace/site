@@ -16,3 +16,4 @@ require_once( __DIR__ . '/lib/contact-form-notifications.php' );
 require_once( __DIR__ . '/lib/projects.php' );
 require_once( __DIR__ . '/lib/resources.php' );
 require_once( __DIR__ . '/lib/wishlist.php' );
+require_once( __DIR__ . '/lib/rest-api.php' );
