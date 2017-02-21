@@ -48,8 +48,8 @@ if ( ! class_exists( 'MakerspaceRestApi' ) ) {
 				'url' => get_bloginfo( 'url' ),
 				'location' => array(
 					'address' => get_option( 'terminally_pixelated_location_address' ),
-					'lat' => get_option( 'terminally_pixelated_location_latitude' ),
-					'lon' => get_option( 'terminally_pixelated_location_longitude' ),
+					'lat' => (float) get_option( 'terminally_pixelated_location_latitude' ),
+					'lon' => (float) get_option( 'terminally_pixelated_location_longitude' ),
 				),
 				'contact' => array(
 					'email' => get_bloginfo( 'admin_email' ),
