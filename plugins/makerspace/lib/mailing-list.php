@@ -34,51 +34,30 @@ if ( ! class_exists( 'MakerspaceMailingListSubscribe' ) ) {
 		 */
 		public function shortcode( $atts ) {
 			ob_start();
-			$form_submitted = ( isset( $_POST['mailing_list_subscribe'] ) && ! empty( $_POST['mailing_list_subscribe'] ) );
-			$error_message = false;
+?>
 
-			if ( $form_submitted ) {
-				$email = trim( $_POST['mailing_list_subscribe'] );
-				if ( is_email( $email ) ) {
-					// Valid email address so try sending a message to the mailing list.
-					$subscribed = wp_mail( static::$join_email, 'MakerSpace Mailing List', 'Beam me up Scotty!', 'From: ' . $email );
-					// Let the admin know about it.
-					$admin_email = get_option( 'admin_email' );
-					wp_mail( $admin_email, 'New Mailinglist Member', $email . ' signed up for the mailing list' );
-					if ( $subscribed ) {
-						// Victory!
-						?>
-						<div class="mailing-list-subscribe">
-							<div class="mailing-list-subscribe__message--success">
-								<h2>Thank You</h2>
-								<p>You will be added to the mailing list shortly.</p>
-							</div>
-						</div>
-						<?php
+			<!-- Begin MailChimp Signup Form -->
+			<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+			<style type="text/css">
+				#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+				/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+				   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+			</style>
+			<div id="mc_embed_signup">
+			<form action="https://dundeemakerspace.us18.list-manage.com/subscribe/post?u=ef82b755e967411750419f6f0&amp;id=f29a1df118" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			    <div id="mc_embed_signup_scroll">
+				<label for="mce-EMAIL">Subscribe to our mailing list</label>
+				<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+			    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+			    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_ef82b755e967411750419f6f0_f29a1df118" tabindex="-1" value=""></div>
+			    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+			    </div>
+			</form>
+			</div>
 
-					} else {
-						// Fail!
-						$error_message = 'Something went wrong. Please try again later.';
-					}
-				} else {
-					$error_message = 'You need to enter a valid email address';
-				}
-			}
-			if ( ! $form_submitted || $error_message ) {
-				?>
-					<form action="" method="post" class="mailing-list-subscribe">
-						<?php if ( $error_message ) : ?>
-							<div class="mailing-list-subscribe__message--error">
-								<p><?php echo $error_message; ?></p>
-							</div>
-						<?php endif; ?>
-						<label for="mailing_list_subscribe" class="mailing-list-subscribe__label">Email</label>
-						<input type="email" placeholder="maker@example.com" name="mailing_list_subscribe" id="mailing_list_subscribe" class="mailing-list-subscribe__input">
-						<button type="submit" class="mailing-list-subscribe__button">Subscribe</button>
-					</form>
-				<?php
-			}
+			<!--End mc_embed_signup-->
 
+<?php
 			return ob_get_clean();
 		}
 	}
